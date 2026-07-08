@@ -1,4 +1,4 @@
-name: "Step 3 Check: Branch Created"
+name: "Step 4 Check: Branch Created"
 
 on:
   push:
@@ -20,14 +20,14 @@ jobs:
           if [ "$BRANCH" = "add-about-me" ]; then
             echo "Branch name is correct!"
             echo ""
-            echo "Head to Step 4 to create your about-me.md file:"
-            echo "  steps/04-add-stage.md"
+            echo "Head to Step 5 to create your about-me.md file:"
+            echo "  steps/05-create-file.md"
           else
             echo "::notice title=Branch Name::Your branch is named '$BRANCH'."
-            echo "Step 3 asks you to name it exactly 'add-about-me'."
+            echo "Step 4 asks you to name it exactly 'add-about-me'."
             echo ""
             echo "This is a notice, not a failure. You can continue,"
-            echo "but the Steps 4-6 check only runs on the 'add-about-me' branch."
+            echo "but the Steps 5-6 check only runs on the 'add-about-me' branch."
             echo "Consider recreating your branch with the correct name:"
             echo "  git checkout main"
             echo "  git checkout -b add-about-me"

@@ -19,7 +19,7 @@ Your `about-me.md` file must:
 
 ### After Creating the File
 
-Follow the instructions in [Step 4](../steps/04-add-stage.md) to stage and then commit the file.
+Follow the instructions in [Step 5](../steps/05-create-file.md) to stage and then commit the file.
 
 ---
 

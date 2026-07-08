@@ -1,7 +1,7 @@
 # Step 1: Fork the Repository
 
 **Previous step:** None — this is the beginning!
-**Next step:** [Step 2 - Open the Editor](02-open-editor.md)
+**Next step:** [Step 2 - Launch a Codespace](02-codespace.md)
 
 ---
 
@@ -49,7 +49,7 @@ If you see your username there instead of someone else's, you forked successfull
 
 ## No Automated Check for This Step
 
-There is no GitHub Actions check for this step — the proof is simply that you are reading this in your own fork. The automated checks start in Step 3 when you begin pushing code.
+There is no GitHub Actions check for this step — the proof is simply that you are reading this in your own fork. The automated checks start in Step 4 when you create your branch.
 
 ---
 
@@ -61,4 +61,4 @@ There is no GitHub Actions check for this step — the proof is simply that you 
 
 ---
 
-**You completed Step 1!** Head to [Step 2 - Open the Editor](02-open-editor.md).
+**You completed Step 1!** Head to [Step 2 - Launch a Codespace](02-codespace.md).

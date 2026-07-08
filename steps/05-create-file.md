@@ -1,7 +1,7 @@
-# Step 4: Create Your File
+# Step 5: Create Your File
 
-**Previous step:** [Step 3 - Create a Branch](03-branch.md)
-**Next step:** [Step 5 - Commit Your Changes](05-commit.md)
+**Previous step:** [Step 4 - Create a Branch](04-branch.md)
+**Next step:** [Step 6 - Commit and Push](06-commit.md)
 
 ---
 
@@ -21,10 +21,8 @@ This two-step process lets you make multiple changes and choose exactly which on
 | State | Meaning |
 |-------|---------|
 | **Untracked** | Git sees the file exists but is not watching it |
+| **Modified** | A tracked file has changed but is not staged yet |
 | **Staged** | The file is in the "box" ready to be committed |
-| **Committed** | The file has been saved as a snapshot in git's history |
-
-In github.dev, staging happens automatically when you save a file — any modified file shows up in the Source Control panel ready to be included in your next commit.
 
 ---
 
@@ -32,14 +30,12 @@ In github.dev, staging happens automatically when you save a file — any modifi
 
 ### Step 1: Open the exercises folder
 
-In the github.dev editor, look at the **file explorer** on the left sidebar. Click the `exercises` folder to expand it.
-
-You will see `README.md` and `about-me-template.md` inside. Open `about-me-template.md` to use as a reference.
+In the file explorer on the left sidebar, click the `exercises` folder to expand it. You will see `README.md` and `about-me-template.md` inside. Open `about-me-template.md` to use as a reference.
 
 ### Step 2: Create a new file
 
 1. Hover over the `exercises` folder in the sidebar.
-2. Click the **New File** icon (it looks like a page with a `+` sign).
+2. Click the **New File** icon (a page with a `+` sign).
 3. Type `about-me.md` and press Enter.
 
 The new file opens in the editor. Make sure the path shown at the top says `exercises/about-me.md`.
@@ -67,39 +63,42 @@ Here is a starter template — paste this in and fill it out:
 [What do you want to be able to do after this program?]
 ```
 
+> **🤖 Ask Copilot:** This is a great place to try Copilot's **inline suggestions**. Type a line like `**Something I am interested in:**` and then press Enter — watch for the grey ghost text. Or open Copilot Chat and ask: *"Help me write a friendly one-sentence intro for a student who likes robotics and basketball."* Then edit the result to make it truly *yours* — Copilot gives you a starting point, not the final word.
+
 ### Step 4: Save the file
 
 Press **Ctrl+S** (Windows/Linux) or **Cmd+S** (Mac) to save.
 
-Once saved, the **Source Control icon** on the left sidebar (the branching icon) will show a badge with the number of changed files — this means your file is staged and ready to commit.
-
 ---
 
-## Confirm It Is Staged
+## Step 5: Stage the File
 
-Click the **Source Control icon** in the left sidebar. You should see `exercises/about-me.md` listed under **Changes**. This is the github.dev equivalent of the staging area.
+Unlike a quick browser editor, a real Codespace does **not** automatically stage your changes when you save — you do it yourself. This is the real staging step.
 
-If you see your file there, you are ready for the next step.
-
----
+1. Click the **Source Control icon** in the left sidebar (a branching icon with a numbered badge).
+2. You will see `about-me.md` listed under **Changes**.
+3. Hover over `about-me.md` and click the **`+`** (plus) icon to stage it.
+4. The file moves up into a **Staged Changes** section. It is now in the "box," ready to commit.
 
 > **CLI Alternative (optional, for the curious)**
 >
-> In a terminal, after creating the file you would stage it with:
+> In the terminal you can stage the file with one command:
 > ```bash
 > git add exercises/about-me.md
 > ```
-> Then verify with:
-> ```bash
-> git status
-> ```
-> You would see the file listed under "Changes to be committed."
+> Then check what is staged with `git status` — your file appears under "Changes to be committed."
+
+---
+
+## How to Know You Did It
+
+In the Source Control panel, `exercises/about-me.md` appears under **Staged Changes**. If you see it there, you are ready to commit.
 
 ---
 
 ## Automated Check
 
-When you commit and push (Step 5), the **Steps 4-5 Check** workflow runs and verifies:
+When you commit and push (Step 6), the **Steps 5-6 Check** workflow runs and verifies:
 - `exercises/about-me.md` exists
 - It contains the `## About Me` heading
 - It has at least 3 lines of content
@@ -108,4 +107,4 @@ If something is wrong, the error message in the Actions tab will tell you exactl
 
 ---
 
-**You completed Step 4!** Head to [Step 5 - Commit Your Changes](05-commit.md).
+**You completed Step 5!** Head to [Step 6 - Commit and Push](06-commit.md).

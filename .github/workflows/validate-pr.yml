@@ -1,4 +1,4 @@
-name: "Step 6 Check: Pull Request"
+name: "Step 7 Check: Pull Request"
 
 on:
   pull_request:
@@ -23,7 +23,7 @@ jobs:
           echo "PR source branch: $HEAD"
           if [ "$HEAD" != "add-about-me" ]; then
             echo "::notice::Your PR is from branch '$HEAD', not 'add-about-me'."
-            echo "This is fine if you named your branch differently in Step 3."
+            echo "This is fine if you named your branch differently in Step 4."
           else
             echo "Source branch is correct!"
           fi
@@ -39,7 +39,7 @@ jobs:
             echo "  2. Committed and pushed the file"
             echo "  3. Opened the PR from your 'add-about-me' branch"
             echo ""
-            echo "Re-read steps/04-add-stage.md and steps/06-push.md if you need a reminder."
+            echo "Re-read steps/05-create-file.md and steps/06-commit.md if you need a reminder."
             exit 1
           fi
           echo "exercises/about-me.md is included in this PR!"
