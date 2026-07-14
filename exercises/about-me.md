@@ -16,18 +16,18 @@ Copy the content below into a new file called `about-me.md` in this same folder,
 ```markdown
 ## About Me
 
-**Name:** [Your name or a nickname — whatever you are comfortable sharing]
+**Name:** [Mathani]
 
-**School or Grade:** [Optional]
+**School or Grade:** [11th]
 
 **Why I joined Tech Journey:**
-[Write 1-2 sentences about what made you want to join this program]
+[I joined tech journey because i want to expose myself to new experiences. I think that it is an amazing way to socialize and learn new skills.]
 
 **Something I am interested in:**
-[Could be anything — a hobby, a subject, a game, a sport]
+[Working out]
 
 **One thing I hope to learn:**
-[What do you want to be able to do after this program?]
+[I hope to learn something that I didn't know before I came here.]
 ```
 
 ---
