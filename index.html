@@ -104,39 +104,53 @@
   <body
     class="min-h-screen bg-gradient-to-br from-red-600 to-black flex justify-center items-start p-4"
   >
-    <main class="bg-white w-full max-w-2xl my-12 p-10 rounded-2xl shadow-2xl">
+    <main class="bg-white w-full max-w-3xl my-12 p-8 md:p-10 rounded-3xl shadow-2xl border border-red-100">
       <!-- ▼▼▼ START EDITING HERE ▼▼▼ -->
 
-      <h1 class="text-4xl font-extrabold text-[#8B0000]">
-        Hi, I'm [Mathani]
-        <span id="wave-emoji" class="wave-emoji">👋</span>
-      </h1>
-      <p class="text-lg text-red-800 mt-1">
-        A future developer learning Git, GitHub, and Copilot.
-      </p>
+      <section class="rounded-2xl bg-red-50 p-6 shadow-sm">
+        <h1 class="text-4xl font-extrabold text-[#8B0000]">
+          Hi, I'm Mathani
+          <span id="wave-emoji" class="wave-emoji">👋</span>
+        </h1>
+        <p class="text-lg text-red-800 mt-2">
+          A creative and curious student building confidence in coding, design, and technology.
+        </p>
+      </section>
 
-      <h2 class="text-2xl font-semibold mt-8 pb-1 border-b-4 border-[#8B0000] text-[#8B0000]">
-        About Me
-      </h2>
-      <p class="mt-3 text-red-900">
-        I love to learn new things and build cool projects. I go to roosevelt high school and I am an incoming junior.
-      </p>
+      <div class="grid md:grid-cols-[1.2fr_0.8fr] gap-6 mt-8">
+        <div>
+          <h2 class="text-2xl font-semibold pb-1 border-b-4 border-[#8B0000] text-[#8B0000]">
+            About Me
+          </h2>
+          <p class="mt-3 text-red-900 leading-relaxed">
+            I’m a high school student who loves learning new things, expressing myself through creativity, and exploring the world of tech. I enjoy making things that look good, feel meaningful, and help people.
+          </p>
+        </div>
+
+        <div class="bg-black text-white rounded-2xl p-5">
+          <h3 class="text-lg font-semibold">Quick Facts</h3>
+          <ul class="mt-3 space-y-2 text-sm text-red-100">
+            <li>• Incoming junior</li>
+            <li>• Loves photography and aesthetic visuals</li>
+            <li>• Enjoys cooking and trying new recipes</li>
+          </ul>
+        </div>
+      </div>
 
       <h2 class="text-2xl font-semibold mt-8 pb-1 border-b-4 border-[#8B0000] text-[#8B0000]">
         Things I'm Into
       </h2>
-      <ul class="mt-3 space-y-1 text-red-900 list-disc list-inside">
-        <li>Learning new skills</li>
-        <li>taking aesthetic pictures!</li>
-        <li>cooking new recipes! </li>
+      <ul class="mt-3 space-y-2 text-red-900 list-disc list-inside leading-relaxed">
+        <li>Learning new skills and growing every day</li>
+        <li>Taking aesthetic pictures and capturing cool moments</li>
+        <li>Cooking new recipes and experimenting in the kitchen</li>
       </ul>
 
       <h2 class="text-2xl font-semibold mt-8 pb-1 border-b-4 border-[#8B0000] text-[#8B0000]">
         What I'm Learning
       </h2>
-      <p class="mt-3 text-red-900">
-        Right now I'm learning how developers build and share software with
-        GitHub.
+      <p class="mt-3 text-red-900 leading-relaxed">
+        Right now I’m learning how developers build and share software with GitHub, and I’m using this page to practice creating something personal and polished.
       </p>
 
       <!--
@@ -144,7 +158,7 @@
         x-data gives this box a tiny bit of "memory" (waves),
         @click runs code when clicked, and x-text shows a value.
       -->
-      <div class="mt-8">
+      <div class="mt-8 flex flex-wrap items-center gap-3">
         <button
           type="button"
           onclick="playWave()"
@@ -152,7 +166,7 @@
         >
           <i class="fa-solid fa-hand"></i> Wave at me
         </button>
-        <span class="ml-3 text-red-800">
+        <span class="text-red-800">
           Thanks for the <span id="wave-count">0</span> wave(s)! 👋
         </span>
       </div>
