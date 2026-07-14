@@ -73,6 +73,181 @@
           count.textContent = current + 1;
         }
       }
+
+      let flappyState = null;
+      let flappyFrameId = null;
+
+      function resetFlappyGame() {
+        const canvas = document.getElementById("flappy-canvas");
+        if (!canvas) return;
+
+        const ctx = canvas.getContext("2d");
+        flappyState = {
+          birdY: canvas.height / 2,
+          birdVelocity: 0,
+          pipes: [],
+          score: 0,
+          gameOver: false,
+          started: false,
+          lastPipeTime: 0,
+          ctx,
+        };
+
+        if (flappyFrameId) {
+          cancelAnimationFrame(flappyFrameId);
+        }
+
+        drawFlappyScene();
+        flappyFrameId = requestAnimationFrame(updateFlappyGame);
+      }
+
+      function flapFlappy() {
+        if (!flappyState) {
+          resetFlappyGame();
+        }
+
+        if (flappyState.gameOver) {
+          resetFlappyGame();
+          return;
+        }
+
+        flappyState.started = true;
+        flappyState.birdVelocity = -4.8;
+      }
+
+      function spawnPipe() {
+        if (!flappyState) return;
+
+        const canvas = document.getElementById("flappy-canvas");
+        if (!canvas) return;
+
+        const minGap = 72;
+        const gapHeight = 92;
+        const topHeight = Math.random() * (canvas.height - minGap - gapHeight - 30) + 20;
+        flappyState.pipes.push({
+          x: canvas.width,
+          topHeight,
+          gapHeight,
+          width: 34,
+        });
+      }
+
+      function drawFlappyScene() {
+        if (!flappyState) return;
+
+        const canvas = document.getElementById("flappy-canvas");
+        if (!canvas) return;
+
+        const ctx = flappyState.ctx;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "#111827";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "#f43f5e";
+        ctx.fillRect(0, canvas.height - 18, canvas.width, 18);
+
+        flappyState.pipes.forEach((pipe) => {
+          ctx.fillStyle = "#16a34a";
+          ctx.fillRect(pipe.x, 0, pipe.width, pipe.topHeight);
+          ctx.fillRect(pipe.x, pipe.topHeight + pipe.gapHeight, pipe.width, canvas.height - pipe.topHeight - pipe.gapHeight);
+        });
+
+        ctx.fillStyle = "#fde68a";
+        ctx.beginPath();
+        ctx.arc(70, flappyState.birdY, 12, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "16px Poppins, sans-serif";
+        ctx.fillText(`Score: ${flappyState.score}`, 16, 24);
+
+        if (!flappyState.started) {
+          ctx.fillStyle = "rgba(255,255,255,0.85)";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = "#111827";
+          ctx.font = "bold 18px Poppins, sans-serif";
+          ctx.fillText("Tap to start", 92, 100);
+          ctx.font = "14px Poppins, sans-serif";
+          ctx.fillText("Click or tap the game to flap", 54, 126);
+        }
+
+        if (flappyState.gameOver) {
+          ctx.fillStyle = "rgba(0,0,0,0.7)";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = "#ffffff";
+          ctx.font = "bold 20px Poppins, sans-serif";
+          ctx.fillText("Game Over", 100, 90);
+          ctx.font = "14px Poppins, sans-serif";
+          ctx.fillText(`Final score: ${flappyState.score}`, 96, 116);
+        }
+      }
+
+      function updateFlappyGame(timestamp) {
+        if (!flappyState) return;
+
+        const canvas = document.getElementById("flappy-canvas");
+        if (!canvas) return;
+
+        if (!flappyState.started) {
+          drawFlappyScene();
+          flappyFrameId = requestAnimationFrame(updateFlappyGame);
+          return;
+        }
+
+        if (flappyState.gameOver) {
+          drawFlappyScene();
+          return;
+        }
+
+        flappyState.birdVelocity += 0.22;
+        flappyState.birdY += flappyState.birdVelocity;
+
+        if (timestamp - flappyState.lastPipeTime > 1400) {
+          spawnPipe();
+          flappyState.lastPipeTime = timestamp;
+        }
+
+        flappyState.pipes = flappyState.pipes.filter((pipe) => {
+          pipe.x -= 2.6;
+          return pipe.x + pipe.width > 0;
+        });
+
+        flappyState.pipes.forEach((pipe) => {
+          if (pipe.x + pipe.width > 70 && pipe.x < 94 && (flappyState.birdY - 12 < pipe.topHeight || flappyState.birdY + 12 > pipe.topHeight + pipe.gapHeight)) {
+            flappyState.gameOver = true;
+          }
+
+          if (pipe.x + pipe.width < 70 && pipe.x + pipe.width + 2.6 >= 70) {
+            flappyState.score += 1;
+          }
+        });
+
+        if (flappyState.birdY <= 12 || flappyState.birdY >= canvas.height - 30) {
+          flappyState.gameOver = true;
+        }
+
+        document.getElementById("flappy-score").textContent = flappyState.score;
+        drawFlappyScene();
+
+        if (!flappyState.gameOver) {
+          flappyFrameId = requestAnimationFrame(updateFlappyGame);
+        }
+      }
+
+      window.addEventListener("load", () => {
+        const canvas = document.getElementById("flappy-canvas");
+        if (canvas) {
+          canvas.addEventListener("click", flapFlappy);
+        }
+
+        const restartButton = document.getElementById("flappy-restart");
+        if (restartButton) {
+          restartButton.addEventListener("click", resetFlappyGame);
+        }
+
+        resetFlappyGame();
+      });
     </script>
 
     <style>
@@ -183,6 +358,35 @@
       </div>
 
       <!-- ▲▲▲ STOP EDITING HERE (or keep going — it's your page!) ▲▲▲ -->
+
+      <section class="mt-10 rounded-2xl border border-red-200 bg-black p-5 text-white shadow-inner">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="text-2xl font-semibold text-[#ff6b6b]">Mini Game: Redbird Rush</h2>
+            <p class="mt-1 text-sm text-red-100">Tap or click the game to flap and dodge the pipes.</p>
+          </div>
+          <button
+            id="flappy-restart"
+            type="button"
+            class="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700"
+          >
+            Restart
+          </button>
+        </div>
+
+        <div class="mt-4 flex justify-center">
+          <canvas
+            id="flappy-canvas"
+            width="320"
+            height="220"
+            class="rounded-2xl border border-red-400 bg-gradient-to-b from-slate-900 to-black"
+          ></canvas>
+        </div>
+
+        <p class="mt-3 text-center text-sm text-red-100">
+          Score: <span id="flappy-score">0</span>
+        </p>
+      </section>
 
       <footer class="mt-10 text-center text-sm text-gray-400">
         Built with <i class="fa-solid fa-heart text-red-400"></i> during the
