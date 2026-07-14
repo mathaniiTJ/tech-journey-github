@@ -57,9 +57,34 @@
           },
         },
       };
+
+      function playWave() {
+        const emoji = document.getElementById("wave-emoji");
+        const count = document.getElementById("wave-count");
+
+        if (emoji) {
+          emoji.classList.remove("is-waving");
+          void emoji.offsetWidth;
+          emoji.classList.add("is-waving");
+        }
+
+        if (count) {
+          const current = parseInt(count.textContent || "0", 10);
+          count.textContent = current + 1;
+        }
+      }
     </script>
 
     <style>
+      .wave-emoji {
+        display: inline-block;
+        transform-origin: bottom left;
+      }
+
+      .wave-emoji.is-waving {
+        animation: wave 0.6s ease-in-out 2;
+      }
+
       @keyframes wave {
         0%,
         100% {
@@ -79,17 +104,12 @@
   <body
     class="min-h-screen bg-gradient-to-br from-red-600 to-black flex justify-center items-start p-4"
   >
-    <main x-data="{ waves: 0, waving: false }" class="bg-white w-full max-w-2xl my-12 p-10 rounded-2xl shadow-2xl">
+    <main class="bg-white w-full max-w-2xl my-12 p-10 rounded-2xl shadow-2xl">
       <!-- ▼▼▼ START EDITING HERE ▼▼▼ -->
 
       <h1 class="text-4xl font-extrabold text-[#8B0000]">
         Hi, I'm [Mathani]
-        <span
-          class="inline-block origin-bottom-left"
-          :style="waving ? { animation: 'wave 0.6s ease-in-out 2' } : {}"
-        >
-          👋
-        </span>
+        <span id="wave-emoji" class="wave-emoji">👋</span>
       </h1>
       <p class="text-lg text-red-800 mt-1">
         A future developer learning Git, GitHub, and Copilot.
@@ -102,7 +122,7 @@
         I love to learn new things and build cool projects. I go to roosevelt high school and I am an incoming junior.
       </p>
 
-      <h2 class="text-2xl font-semibold mt-8 pb-1 border-b-4 border-black text-black">
+      <h2 class="text-2xl font-semibold mt-8 pb-1 border-b-4 border-[#8B0000] text-[#8B0000]">
         Things I'm Into
       </h2>
       <ul class="mt-3 space-y-1 text-red-900 list-disc list-inside">
@@ -126,13 +146,14 @@
       -->
       <div class="mt-8">
         <button
-          @click="waves++; waving = true; setTimeout(() => waving = false, 700)"
+          type="button"
+          onclick="playWave()"
           class="bg-red-600 hover:bg-red-700 text-white font-semibold px-5 py-2 rounded-lg shadow transition"
         >
           <i class="fa-solid fa-hand"></i> Wave at me
         </button>
-        <span x-show="waves > 0" class="ml-3 text-red-800">
-          Thanks for the <span x-text="waves"></span> wave(s)! 👋
+        <span class="ml-3 text-red-800">
+          Thanks for the <span id="wave-count">0</span> wave(s)! 👋
         </span>
       </div>
 
