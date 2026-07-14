@@ -79,20 +79,18 @@
   <body
     class="min-h-screen bg-gradient-to-br from-red-600 to-black flex justify-center items-start p-4"
   >
-    <main class="bg-white w-full max-w-2xl my-12 p-10 rounded-2xl shadow-2xl">
+    <main x-data="{ waves: 0, waving: false }" class="bg-white w-full max-w-2xl my-12 p-10 rounded-2xl shadow-2xl">
       <!-- ▼▼▼ START EDITING HERE ▼▼▼ -->
 
-      <div x-data="{ waves: 0, waving: false }">
-        <h1 class="text-4xl font-extrabold text-[#8B0000]">
-          Hi, I'm [Mathani]
-          <span
-            class="inline-block"
-            :style="waving ? { animation: 'wave 0.6s ease-in-out 2' } : {}"
-          >
-            👋
-          </span>
-        </h1>
-      </div>
+      <h1 class="text-4xl font-extrabold text-[#8B0000]">
+        Hi, I'm [Mathani]
+        <span
+          class="inline-block origin-bottom-left"
+          :style="waving ? { animation: 'wave 0.6s ease-in-out 2' } : {}"
+        >
+          👋
+        </span>
+      </h1>
       <p class="text-lg text-red-800 mt-1">
         A future developer learning Git, GitHub, and Copilot.
       </p>
@@ -126,7 +124,7 @@
         x-data gives this box a tiny bit of "memory" (waves),
         @click runs code when clicked, and x-text shows a value.
       -->
-      <div x-data="{ waves: 0, waving: false }" class="mt-8">
+      <div class="mt-8">
         <button
           @click="waves++; waving = true; setTimeout(() => waving = false, 700)"
           class="bg-red-600 hover:bg-red-700 text-white font-semibold px-5 py-2 rounded-lg shadow transition"
